@@ -18,7 +18,7 @@ connectDB();
 
 // Security Middleware
 app.use(helmet());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'https://task-flow-management-delta.vercel.app', credentials: true }));
 
 
 // Rate Limiting
