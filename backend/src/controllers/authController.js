@@ -20,6 +20,7 @@ const register = async (req, res, next) => {
       token,
       user: { id: user._id, name: user.name, email: user.email, role: user.role },
     });
+
   } catch (error) {
     next(error);
   }
@@ -42,6 +43,7 @@ const login = async (req, res, next) => {
       token,
       user: { id: user._id, name: user.name, email: user.email, role: user.role },
     });
+
   } catch (error) {
     next(error);
   }
@@ -52,6 +54,7 @@ const login = async (req, res, next) => {
 const getMe = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
+    
     return successResponse(res, 200, 'Profile fetched.', {
       id: user._id,
       name: user.name,
@@ -59,6 +62,7 @@ const getMe = async (req, res, next) => {
       role: user.role,
       createdAt: user.createdAt,
     });
+
   } catch (error) {
     next(error);
   }

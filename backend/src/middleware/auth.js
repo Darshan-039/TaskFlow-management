@@ -2,7 +2,7 @@ const { verifyToken } = require('../utils/jwt');
 const User = require('../models/User');
 const { errorResponse } = require('../utils/response');
 
-// Protect routes — requires valid JWT
+// Protect routes 
 const protect = async (req, res, next) => {
   try {
     let token;
@@ -24,23 +24,34 @@ const protect = async (req, res, next) => {
 
     req.user = user;
     next();
+
   } catch (error) {
     return errorResponse(res, 401, 'Token is invalid or expired.');
   }
 };
 
-// Restrict to specific roles
+
+
+
+// Restrict to specific role
 const authorize = (...roles) => {
+
   return (req, res, next) => {
+
     if (!roles.includes(req.user.role)) {
+
       return errorResponse(
         res,
         403,
         `Role '${req.user.role}' is not authorized to access this route.`
       );
+
     }
+
     next();
+
   };
+  
 };
 
 module.exports = { protect, authorize };

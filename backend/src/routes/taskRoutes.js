@@ -11,6 +11,7 @@ const {
 const { protect, authorize } = require('../middleware/auth');
 const { taskValidator } = require('../validators');
 
+
 // Admin-only routes
 router.get('/admin/users', protect, authorize('admin'), getAllUsers);
 
